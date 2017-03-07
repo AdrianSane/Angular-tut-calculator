@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<!-- source for the angular application -->
+<html data-ng-app="myCalculator">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="assets/calculator.css">
+		<script type="text/javascript"src="assets/angular.min.js"></script>
+		<script type="text/javascript"src="assets/calculator.js"></script>
+		<title>Calculator</title>
+	</head>
+	<body>
+
+		<!-- target for the controller -->
+		<div id="myCalculator" data-ng-controller="CalculatorController">
+			<main>
+				<section class="inc">
+					<div>
+						<h4>Incandescent</h4>
+						<p>{{inc_wattage}}</p>
+						<p>{{inc_cost}}</p>
+					</div>
+				</section>
+
+
+				<section class="hal">
+					<div>
+						<h4>Halogen</h4>
+						<p>{{hal_wattage}}</p>
+						<p>{{hal_cost}}</p>
+					</div>
+				</section>
+
+
+				<section class="cfl">
+					<div>
+						<h4>CFL</h4>
+						<p>{{cfl_wattage}}</p>
+						<p>{{cfl_cost}}</p>
+					</div>
+				</section>
+
+
+				<section class="led">
+					<div>
+						<h4>LED</h4>
+						<p>{{led_wattage}}</p>
+						<p>{{led_cost}}</p>
+					</div>
+				</section>
+			</main>
+
+
+
+			<form class="" action="index.html" method="post">
+				<div>
+					<h4>Lumens</h4>
+					<p>Brightness <br>of bulb</p>
+					<select data-ng-model="current_lumens" data-ng-options="o as o for o in lumen_options" data-ng-change="calculate()">
+						<!--
+							these options are populated based on the lumen_options array
+							these options are now hooked to the scoped variable: lumen_options
+							the ng-options statement loops through all the available items in the array and displays them on screen
+							this creates the option element inside of the select form
+							this data binding is working between the "select" element and the scoped variables in the js file
+							the ng-change calls the calculate funtion that will calculate the lumens * wattage based on a users selection
+						-->
+					</select>
+				</div>
+
+
+				<div>
+					<h4>kWh</h4>
+					<p>Kilowatt-<br>hour cost</p>
+					<input type="number" data-ng-change="calculate()" data-ng-change="calculate()" value="{{current_cost}}" data-ng-model="current_cost"> cents
+				</div>
+
+
+				<div>
+					<h4>Hours</h4>
+					<p>Usage <br>per day</p>
+					<input type="number" data-ng-change="calculate()" value="{{current_hours}}" data-ng-model="current_hours">
+				</div>
+			</form><!-- / form-->
+
+		</div><!-- / #myCalculator-->
+	</body>
+</html>
